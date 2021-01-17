@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <form>
+            <select id="symbol" onchange="makePyramid(dropBox.value, slider.value)">
+                <option>#</option>
+                <option>$</option>
+                <option>@</option>
+                <option>X</option>
+            </select>
+            <input type="range" oninput="makePyramid(dropBox.value, slider.value)" id="high" min="0" max="20">
+            <p id="counter"></p>
+        </form>
+        <p id="pyramid"></p>
+        
+        <script>
+            let dropBox = document.getElementById("symbol");
+            let slider = document.getElementById("high");
+            
+            function makePyramid(symbol, height) {
+                document.getElementById("pyramid").innerHTML = "";
+                let spaceNum = height - 1;
+                document.getElementById("counter").innerHTML = "";
+                document.getElementById("counter").innerHTML = height;
+                
+                for (i = 0; i < height; i++) {
+                    let numSym = i + 2;
+                    let numSpace = height - i - 1;
+                    let sym = "";
+                    
+                    for (x = 0; x < numSpace; x++) {
+                        let spaceChar = "..";
+                        sym += spaceChar;
+                    }
+                    for (y = 0; y < numSym; y++) {
+                        sym += symbol;
+                    }
+
+                    rowElem = document.createElement("p");
+                    rowElem.innerHTML = sym;
+                    document.getElementById("pyramid").appendChild(rowElem);
+                }
+            }
+            function addEventListener() {
+                
+            }
+            //dropBox.addEventListener("onchange", makePyramid(dropBox.value, slider.value));
+            //slider.addEventListener("oninput", makePyramid(dropBox.value, slider.value));
+        </script>
+    </body>
+</html>
